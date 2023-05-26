@@ -2,3 +2,5 @@ internal/core/services/internal/mocks
 internal/core/services/internal/mocks-reflect
 
 cmd/foobar/foobar
+
+lint-report.json

@@ -2,8 +2,12 @@
 all: build
 
 .PHONY: build
-build: generate-mocks
+build: generate-mocks lint
 	go build -o cmd/foobar/foobar ./cmd/foobar
+
+.PHONY: lint
+lint: generate-mocks
+	./run-linting.sh
 
 .PHONY: generate-mocks
 generate-mocks:

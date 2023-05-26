@@ -67,3 +67,21 @@ go generate ./...
 Дока по Makefile лежит здесь: https://www.gnu.org/software/make/manual/make.html
 
 См. Makefile в корне проекта
+
+# Линтеры
+
+## `golangci-lint`
+
+См. https://golangci-lint.run/
+
+Для запуска линтеров выполните:
+
+```bash
+make lint
+```
+
+Для того, чтобы запустить `golangci-lint` с файлом конфигурации выполните:
+
+```bash
+make lint GOLANGCI_LINT_CONFIG_FILE=lint.yml 
+```
