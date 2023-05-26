@@ -61,3 +61,9 @@ go generate ./...
 ```
 
 в корне проекта.
+
+# Makefile
+
+Дока по Makefile лежит здесь: https://www.gnu.org/software/make/manual/make.html
+
+См. Makefile в корне проекта
