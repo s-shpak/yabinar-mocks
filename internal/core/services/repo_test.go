@@ -11,6 +11,9 @@ import (
 	"mocks/internal/core/services/internal/mocks"
 )
 
+//go:generate mockgen -source=./repo.go -destination=internal/mocks/repo_mock.gen.go -package=mocks
+// Или: go:generate mockgen -destination=internal/mocks-reflect/repo_mock.gen.go -package=mocks . Store,Foobar
+
 func TestGetFoobar(t *testing.T) {
 	cases := []struct {
 		Name string
