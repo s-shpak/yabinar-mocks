@@ -5,6 +5,7 @@ import (
 	"log"
 
 	"mocks/internal/core/application"
+	"mocks/internal/core/services"
 	"mocks/internal/infra/api/rest"
 	"mocks/internal/infra/store"
 	"mocks/internal/infra/store/memory"
@@ -23,7 +24,8 @@ func run() error {
 	if err != nil {
 		return fmt.Errorf("failed to initialize a store: %w", err)
 	}
-	foobar := application.NewApplication(store)
+	repo := services.NewRepo(store)
+	foobar := application.NewApplication(repo)
 	api := rest.NewAPI(foobar)
 	if err := api.Run(); err != nil {
 		return fmt.Errorf("server has failed: %w", err)

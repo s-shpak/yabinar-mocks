@@ -11,13 +11,13 @@ type Store interface {
 	SetFoobar(req *model.FoobarRequest, resp *model.FoobarResponse) error
 }
 
-type foobar interface {
+type Foobar interface {
 	Calculate(req *model.FoobarRequest) *model.FoobarResponse
 }
 
 type Repo struct {
 	store  Store
-	foobar foobar
+	foobar Foobar
 }
 
 func NewRepo(store Store) *Repo {
