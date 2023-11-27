@@ -36,9 +36,9 @@ func (r *Repo) GetFoobar(req *model.FoobarRequest) (*model.FoobarResponse, error
 		return resp, nil
 	}
 	resp = r.foobar.Calculate(req)
-	r.store.SetFoobar(req, resp)
-	// if err := r.store.SetFoobar(req, resp); err != nil {
-	// 	return nil, fmt.Errorf("failed to store the foobar calculation in the store: %w", err)
-	// }
+	// r.store.SetFoobar(req, resp)
+	if err := r.store.SetFoobar(req, resp); err != nil {
+		return nil, fmt.Errorf("failed to store the foobar calculation in the store: %w", err)
+	}
 	return resp, nil
 }
