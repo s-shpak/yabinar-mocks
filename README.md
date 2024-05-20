@@ -11,7 +11,7 @@
 Установите gomock локально:
 
 ```bash
-go install github.com/golang/mock/mockgen@v1.6.0
+go install go.uber.org/mock/mockgen@latest
 ```
 
 Моки можно сгенерировать, передавая путь к файлу с интерфейсами:
@@ -22,13 +22,7 @@ mockgen -source=internal/core/services/repo.go \
     -package=mocks
 ```
 
-А можно сгенерировать, передавая import path пакета и список интерфейсов для мокирования. Для этого сначал необходимо добавить зависимость:
-
-```bash
-go get github.com/golang/mock/mockgen/model@v1.6.0
-```
-
-А после выполнить эту комманду:
+А можно сгенерировать, передавая import path пакета и список интерфейсов для мокирования:
 
 ```bash
 mockgen -destination=internal/core/services/internal/mocks-reflect/repo_mock.gen.go \
@@ -59,6 +53,26 @@ go generate ./...
 ```
 
 в корне проекта.
+
+## Mockery
+
+Другой популярный пакет для создания моков (см. сравнение их и других пакетов для мокирования здесь: https://gist.github.com/maratori/8772fe158ff705ca543a0620863977c2).
+
+Установите `mockery` при помощи:
+
+```bash
+go install github.com/vektra/mockery/v2@v2.43.1
+```
+
+Конфигурация `mockery` находится в `.mockery.yaml`.
+
+Сгенерируйте код:
+
+```bash
+mockery
+```
+
+Тесты с использованием `mockery` лежат в `internal/core/services/repo_mockery_test.go`.
 
 # Makefile
 

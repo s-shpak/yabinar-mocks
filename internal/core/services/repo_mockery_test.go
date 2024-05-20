@@ -2,19 +2,13 @@ package services
 
 import (
 	"fmt"
+	"mocks/internal/core/model"
+	mocks "mocks/internal/core/services/internal/mockery"
 	"reflect"
 	"testing"
-
-	"go.uber.org/mock/gomock"
-
-	"mocks/internal/core/model"
-	"mocks/internal/core/services/internal/mocks"
 )
 
-//go:generate mockgen -source=./repo.go -destination=internal/mocks/repo_mock.gen.go -package=mocks
-// Или: go:generate mockgen -destination=internal/mocks-reflect/repo_mock.gen.go -package=mocks . Store,Foobar
-
-func TestGetFoobar(t *testing.T) {
+func TestGetFoobarMockery(t *testing.T) {
 	cases := []struct {
 		Name string
 
@@ -55,26 +49,26 @@ func TestGetFoobar(t *testing.T) {
 		i, tc := i, tc
 
 		t.Run(fmt.Sprintf("test case #%d: %s", i, tc.Name), func(t *testing.T) {
-			ctrl := gomock.NewController(t)
-			defer ctrl.Finish()
 
-			storeMock := mocks.NewMockStore(ctrl)
+			storeMock := mocks.NewMockStore(t)
+
 			storeGet := storeMock.EXPECT().
 				GetFoobar(tc.Req).
 				Times(1).
 				Return(tc.StoreGetResponse, tc.StoreGetError)
 
-			foobarMock := mocks.NewMockFoobar(ctrl)
+			foobarMock := mocks.NewMockFoobar(t)
+
 			if tc.StoreGetError == nil && tc.StoreGetResponse == nil {
 				foobarCalculate := foobarMock.EXPECT().
 					Calculate(tc.Req).
-					After(storeGet).
+					NotBefore(storeGet).
 					Times(1).
 					Return(tc.FoobarCalculateResponse)
 
-				_ = storeMock.EXPECT().
+				storeMock.EXPECT().
 					SetFoobar(tc.Req, tc.FoobarCalculateResponse).
-					After(foobarCalculate).
+					NotBefore(foobarCalculate).
 					Times(1).
 					Return(tc.StoreSetError)
 			}
@@ -94,20 +88,4 @@ func TestGetFoobar(t *testing.T) {
 		})
 	}
 
-}
-
-func compareErrors(expected error, actual error) error {
-	if expected == nil && actual == nil {
-		return nil
-	}
-	if expected == nil {
-		return fmt.Errorf("expected a nil error, got: %v", actual)
-	}
-	if actual == nil {
-		return fmt.Errorf("expected an error: %v, got a nil", expected)
-	}
-	if expected.Error() != actual.Error() {
-		return fmt.Errorf("expected an error %v, got %v", expected, actual)
-	}
-	return nil
 }
