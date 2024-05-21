@@ -52,8 +52,6 @@ func TestGetFoobar(t *testing.T) {
 	}
 
 	for i, tc := range cases {
-		i, tc := i, tc
-
 		t.Run(fmt.Sprintf("test case #%d: %s", i, tc.Name), func(t *testing.T) {
 			ctrl := gomock.NewController(t)
 			defer ctrl.Finish()

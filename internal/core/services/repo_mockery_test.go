@@ -66,7 +66,7 @@ func TestGetFoobarMockery(t *testing.T) {
 					Times(1).
 					Return(tc.FoobarCalculateResponse)
 
-				storeMock.EXPECT().
+				_ = storeMock.EXPECT().
 					SetFoobar(tc.Req, tc.FoobarCalculateResponse).
 					NotBefore(foobarCalculate).
 					Times(1).
