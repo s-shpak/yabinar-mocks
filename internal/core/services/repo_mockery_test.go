@@ -8,8 +8,6 @@ import (
 	"testing"
 )
 
-// go:generate go run github.com/vektra/mockery
-
 func TestGetFoobarMockery(t *testing.T) {
 	cases := []struct {
 		Name string

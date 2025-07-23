@@ -20,6 +20,7 @@ clean: clean-mocks clean-bin
 clean-mocks:
 	rm -rf internal/core/services/internal/mocks
 	rm -rf internal/core/services/internal/mocks-reflect
+	rm -rf internal/core/services/internal/mockery
 
 .PHONY: clean-bin
 clean-bin:

@@ -46,8 +46,6 @@ func TestGetFoobar(t *testing.T) {
 	}
 
 	for i, tc := range cases {
-		i, tc := i, tc
-
 		t.Run(fmt.Sprintf("test case #%d: %s", i, tc.name), func(t *testing.T) {
 			mockRepo := newRepoMock(t, tc.req, tc.expectedRepoResponse, tc.expectedError)
 			app := NewApplication(mockRepo)
