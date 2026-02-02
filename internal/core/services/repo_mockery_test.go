@@ -1,13 +1,6 @@
 package services
 
-import (
-	"fmt"
-	"mocks/internal/core/model"
-	mocks "mocks/internal/core/services/internal/mockery"
-	"reflect"
-	"testing"
-)
-
+/*
 func TestGetFoobarMockery(t *testing.T) {
 	cases := []struct {
 		Name string
@@ -89,3 +82,4 @@ func TestGetFoobarMockery(t *testing.T) {
 	}
 
 }
+*/

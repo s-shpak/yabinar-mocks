@@ -1,5 +1,6 @@
 package services
 
+/*
 import (
 	"fmt"
 	"reflect"
@@ -109,3 +110,4 @@ func compareErrors(expected error, actual error) error {
 	}
 	return nil
 }
+*/

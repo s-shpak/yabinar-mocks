@@ -3,6 +3,6 @@
 
 package main
 
-// import (
-// 	_ "github.com/vektra/mockery"
-// )
+import (
+	_ "github.com/vektra/mockery"
+)

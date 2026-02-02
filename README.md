@@ -40,7 +40,7 @@ mockgen -destination=internal/core/services/internal/mocks-reflect/repo_mock.gen
 
 См. пример использования моков в тестах в `internal/core/services/repo_test.go`
 
-## ## `go tool`
+## `go tool`
 
 В Go 1.24 добавили поддержку исполняемых зависимостей: инструментов, которые нужны вам как разработчикам, но от которых не зависит код вашего приложения. Подробнее об этом читайте здесь: https://tip.golang.org/doc/modules/managing-dependencies#tools.
 
@@ -117,3 +117,7 @@ make lint
 ```bash
 make lint GOLANGCI_LINT_CONFIG_FILE=lint.yml 
 ```
+
+# slog
+
+См. `cmd/logging/main.go`
